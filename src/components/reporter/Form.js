@@ -77,6 +77,7 @@ const config = {
     },
   ],
 };
+
 const mdTemplate =
   "## Impact\nDetailed description of the impact of this finding.\n\n## Proof of Concept\nProvide direct links to all referenced code in GitHub. Add screenshots, logs, or any other relevant proof that illustrates the concept.\n\n## Tools Used\n\n## Recommended Mitigation Steps";
 
@@ -235,6 +236,14 @@ const Form = ({ contest, sponsor, repoUrl }) => {
                   fieldState={state}
                 />
                 <Agreement />
+                <div class={clsx(styles.Form)}>
+                  <label><h3>Links to affected code</h3></label>
+                  Provide GitHub links, including line numbers, to all instances of this bug throughout the repo. (How do I link to line numbers on GitHub?)
+                  <h3>Link to code block or line on GitHub</h3>
+                  <input type="text" name="links" />
+                  
+                </div>
+                
                 <button
                   className="button cta-button centered"
                   type="button"

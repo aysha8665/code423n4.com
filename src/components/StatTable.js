@@ -19,26 +19,26 @@ const StatTable = ({ results }) => {
               />
             ),
           },
-          {
-            Header: "USD",
-            accessor: "awardTotal",
-            sortDescFirst: true,
-            Cell: (props) => {
-              return (
-                <span>
-                  {props.value.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </span>
-              );
-            },
-          },
-          {
-            Header: "All",
-            accessor: "allFindings",
-            sortDescFirst: true,
-          },
+          //{
+          //  Header: "USD",
+          //  accessor: "awardTotal",
+          //  sortDescFirst: true,
+          //  Cell: (props) => {
+          //    return (
+          //      <span>
+          //        {props.value.toLocaleString("en-US", {
+          //          style: "currency",
+          //          currency: "USD",
+          //        })}
+          //      </span>
+          //    );
+          //  },
+          //},
+          //{
+          //  Header: "All",
+          //  accessor: "allFindings",
+          //  sortDescFirst: true,
+          //},
           {
             Header: "High",
             accessor: "highRisk",
@@ -49,11 +49,11 @@ const StatTable = ({ results }) => {
             accessor: "medRisk",
             sortDescFirst: true,
           },
-          {
-            Header: "Gas",
-            accessor: "gasOptz",
-            sortDescFirst: true,
-          },
+          //{
+          //  Header: "Gas",
+          //  accessor: "gasOptz",
+          //  sortDescFirst: true,
+          //},
         ],
     []
   );

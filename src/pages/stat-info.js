@@ -5,35 +5,35 @@ import StatTable from "../components/StatTable";
 
 function computeResults(findings) {
   const results = {
-    //lowRisk: 0,
+    lowRisk: 0,
     medRisk: 0,
     highRisk: 0,
-    //nonCrit: 0,
-    //gasOptz: 0,
+    nonCrit: 0,
+    gasOptz: 0,
     allFindings: 0,
-    //awardTotal: 0,
+    awardTotal: 0,
   };
 
   findings.forEach((f) => {
     results.allFindings += 1;
-    //results.awardTotal += f.awardUSD ?? 0;
+    results.awardTotal += f.awardUSD ?? 0;
 
     switch (f.risk) {
-      //case "0":
-      //  results.nonCrit += 1;
-      //  break;
-      //case "1":
-      //  results.lowRisk += 1;
-      //  break;
+      case "0":
+        results.nonCrit += 1;
+        break;
+      case "1":
+        results.lowRisk += 1;
+        break;
       case "2":
         results.medRisk += 1;
         break;
       case "3":
         results.highRisk += 1;
         break;
-      //case "g":
-      //  results.gasOptz += 1;
-      //  break;
+      case "g":
+        results.gasOptz += 1;
+        break;
       default:
         break;
     }
@@ -56,13 +56,13 @@ const StatInfo = ({ data }) => {
         image: p.image,
         link: p.link,
         members: p.members,
-        //lowRisk: 0,
+        lowRisk: 0,
         medRisk: 0,
         highRisk: 0,
-        //nonCrit: 0,
-        //gasOptz: 0,
+        nonCrit: 0,
+        gasOptz: 0,
         allFindings: 0,
-        //awardTotal: 0,
+        awardTotal: 0,
       };
 
       const combinedData = { ...handleData, ...computeResults(p.findings) };
@@ -84,19 +84,39 @@ const StatInfo = ({ data }) => {
   );
 };
 
-export const query = graphql`
-query MyQuery {
-  allHandlesJson {
-    nodes {
-      handle
-      findings {
-        split
-        risk
-        finding
+export const data = graphql`
+  query {
+    handles: allHandlesJson(filter: { showOnLeaderboard: { ne: false } }) {
+      edges {
+        node {
+          handle
+          image {
+            childImageSharp {
+              resize(width: 40) {
+                src
+              }
+            }
+          }
+          link
+          members {
+            handle
+            image {
+              childImageSharp {
+                resize(width: 40) {
+                  src
+                }
+              }
+            }
+            link
+          }
+          findings {
+            awardUSD
+            risk
+          }
+        }
       }
     }
   }
-}
 `;
 
 export default StatInfo;
